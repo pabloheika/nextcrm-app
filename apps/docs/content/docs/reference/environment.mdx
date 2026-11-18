@@ -7,7 +7,7 @@ description: "Every environment variable the app reads, from .env.example and th
 
 Every variable listed in `.env.example` or read as `process.env.NAME` in the app code (tests, scripts and the docs app excluded). **Required** is "yes" when the `.env.example` comment says so and empty when it says nothing; **Purpose** is that comment. Variables read under a computed name are not listed. What each variable does and when you need it: [Configuration reference](/docs/admins/configuration).
 
-57 variables.
+58 variables.
 
 | Variable | Required | In `.env.example` | Purpose | Read in |
 | --- | --- | --- | --- | --- |
@@ -18,6 +18,7 @@ Every variable listed in `.env.example` or read as `process.env.NAME` in the app
 | `COMPANY_NAME` |  | no |  | `lib/enrichment/e2b/agent-script.ts` |
 | `COMPANY_WEBSITE` |  | no |  | `lib/enrichment/e2b/agent-script.ts` |
 | `DATABASE_URL` | yes | yes | PostgreSQL connection string (required). Default: the local Docker Postgres from docker-compose.dev.yml (`pnpm db:up`). | `lib/prisma-base.ts`, `prisma/seeds/seed.ts` |
+| `DIRECT_URL` |  | yes | Optional: Prisma CLI migrations only. For Supabase on Vercel, use the Session Pooler URL (port 5432) here and the Transaction Pooler (port 6543) for DATABASE_URL. If unset, migrations use DATABASE_URL. | `prisma.config.ts` |
 | `E2B_API_KEY` |  | no |  | `inngest/functions/enrich-target-contact.ts`, `inngest/functions/enrich-target.ts`, `lib/enrichment/target-enrichment-keys.ts` |
 | `E2B_ENRICHMENT_TEMPLATE` |  | no |  | `inngest/functions/enrich-target-contact.ts`, `inngest/functions/enrich-target.ts` |
 | `EMAIL_ENCRYPTION_KEY` |  | yes | Encrypts stored mailbox passwords and API keys — generate with: openssl rand -hex 32 Set once and never change it, or the stored values become unreadable. | `lib/email-crypto.ts` |

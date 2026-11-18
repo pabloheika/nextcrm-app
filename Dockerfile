@@ -107,7 +107,7 @@ RUN printf '%s\n' \
     '' \
     'export default defineConfig({' \
     '  datasource: {' \
-    '    url: env("DATABASE_URL"),' \
+    '    url: process.env.DIRECT_URL || env("DATABASE_URL"),' \
     '  },' \
     '  migrations: {' \
     '    seed: "tsx prisma/seeds/seed.ts",' \

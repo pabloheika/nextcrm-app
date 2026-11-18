@@ -69,7 +69,7 @@ Paste a compose file into a new stack and set variables in the platform UI. Vari
 
 `nixpacks.toml` makes Nixpacks (used by Coolify's Nixpacks build pack) install a current pnpm. Platforms that build from source run the package scripts:
 
-- `pnpm build` runs `prisma generate`, `prisma migrate deploy` and `next build`. Migrations therefore run during the build, and the build needs `DATABASE_URL` pointing at a reachable database.
+- `pnpm build` runs `prisma generate`, `prisma migrate deploy` and `next build`. Migrations therefore run during the build and need a reachable database connection. Set `DIRECT_URL` to a migration-compatible connection if the app's `DATABASE_URL` uses a transaction pooler.
 - `pnpm start` runs `next start`.
 
 In this mode nothing is bundled. You provide PostgreSQL with pgvector, S3-compatible storage and an Inngest server yourself, set every required variable, and seed the first admin once with `pnpm prisma db seed` (it uses `TEST_USER_EMAIL`).

@@ -17,7 +17,8 @@ A generated list of every variable the code reads, with the files that read it, 
 
 | Variable | Required | What it does |
 |---|---|---|
-| `DATABASE_URL` | Yes | PostgreSQL connection string used by the app, Prisma migrations and the seed. The database needs the pgvector extension. |
+| `DATABASE_URL` | Yes | PostgreSQL connection string used by the app and seed. The database needs the pgvector extension. |
+| `DIRECT_URL` | No | Optional connection string used by Prisma CLI commands (including migrations); when unset, they use `DATABASE_URL`. For serverless deployments with Supabase, use the Transaction Pooler for `DATABASE_URL` and the Session Pooler for `DIRECT_URL`. |
 | `POSTGRES_USER`, `POSTGRES_PASSWORD`, `POSTGRES_DB` | Docker only | Credentials of the bundled `postgres` service. The compose files build `DATABASE_URL` and the `DB_*` values from them. Defaults: `nextcrm` / `changeme` / `nextcrm`. |
 | `DB_HOST`, `DB_PORT`, `DB_USER`, `DB_PASSWORD`, `DB_NAME` | Docker only | Read by `docker-entrypoint.sh` to wait for Postgres and to check whether the database needs seeding. Set by the compose files. |
 
