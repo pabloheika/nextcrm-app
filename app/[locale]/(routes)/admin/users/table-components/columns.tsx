@@ -9,6 +9,7 @@ import { AdminUser } from "../table-data/schema";
 import { DataTableRowActions } from "./data-table-row-actions";
 import { DataTableColumnHeader } from "./data-table-column-header";
 import { formatDistanceToNowStrict } from "date-fns";
+import { fromPrismaLanguage } from "@/lib/language";
 
 export const columns: ColumnDef<AdminUser>[] = [
   /*   {
@@ -121,7 +122,9 @@ export const columns: ColumnDef<AdminUser>[] = [
       <DataTableColumnHeader column={column} title="Language" />
     ),
 
-    cell: ({ row }) => <div className="">{row.getValue("userLanguage")}</div>,
+    cell: ({ row }) => (
+      <div className="">{fromPrismaLanguage(row.getValue("userLanguage"))}</div>
+    ),
     enableSorting: true,
     enableHiding: true,
   },

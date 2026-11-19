@@ -28,7 +28,7 @@ for (const [source, dir] of sources) {
       const localeVar = loc.replace(/-/g, "_");
       if (existsSync(join(base, id, "messages", `${loc}.json`))) {
         imports.push(`import ${v}_${localeVar} from "@/${dir}/${id}/messages/${loc}.json";`);
-        msgs.push(`${loc}: ${v}_${localeVar}`);
+        msgs.push(`${JSON.stringify(loc)}: ${v}_${localeVar}`);
       }
     }
     entries.push(`  { source: "${source}", definition: ${v}, messages: { ${msgs.join(", ")} } },`);

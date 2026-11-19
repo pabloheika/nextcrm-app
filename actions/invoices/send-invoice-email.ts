@@ -8,6 +8,7 @@ import resendHelper from "@/lib/resend";
 import { getInvoicePdfStream } from "@/lib/invoices/storage";
 import { InvoiceEmail } from "@/emails/InvoiceEmail";
 import { render } from "@react-email/render";
+import { fromPrismaLanguage } from "@/lib/language";
 
 interface SendInvoiceEmailInput {
   invoiceId: string;
@@ -69,7 +70,7 @@ export async function sendInvoiceEmail(input: SendInvoiceEmailInput) {
     InvoiceEmail({
       number: invoice.number ?? "",
       message,
-      userLanguage: user.userLanguage ?? "en",
+      userLanguage: fromPrismaLanguage(user.userLanguage),
     })
   );
 

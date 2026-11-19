@@ -13,6 +13,7 @@ import { renderInvoicePdf } from "@/lib/invoices/pdf/render";
 import { uploadInvoicePdf } from "@/lib/invoices/storage";
 import type { InvoicePdfData, PdfParty } from "@/lib/invoices/pdf/templates/default-invoice";
 import { serializeDecimals } from "@/lib/serialize-decimals";
+import { fromPrismaLanguage } from "@/lib/language";
 
 export async function issueInvoice(raw: unknown) {
   const user = await getUser();
@@ -161,7 +162,7 @@ export async function issueInvoice(raw: unknown) {
       issueDate: result.issueDate!.toISOString().slice(0, 10),
       dueDate: result.dueDate?.toISOString().slice(0, 10),
       taxableSupplyDate: result.taxableSupplyDate?.toISOString().slice(0, 10),
-      locale: user.userLanguage ?? "en",
+      locale: fromPrismaLanguage(user.userLanguage),
       currency: result.currency,
       supplier,
       customer,

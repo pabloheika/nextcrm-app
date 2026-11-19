@@ -135,8 +135,8 @@ export function SetLanguage({ userId }: Props) {
                           <CommandItem
                             value={language.value}
                             key={language.value}
-                            onSelect={(value) => {
-                              form.setValue("language", value);
+                            onSelect={() => {
+                              form.setValue("language", language.value);
                               onSubmit(form.getValues());
                             }}
                           >

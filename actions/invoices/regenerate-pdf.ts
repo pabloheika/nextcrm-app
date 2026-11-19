@@ -8,6 +8,7 @@ import { canReadInvoice, type InvoiceStatus } from "@/lib/invoices/permissions";
 import { renderInvoicePdf } from "@/lib/invoices/pdf/render";
 import { uploadInvoicePdf } from "@/lib/invoices/storage";
 import { buildInvoicePdfData } from "@/lib/invoices/pdf/build-pdf-data";
+import { fromPrismaLanguage } from "@/lib/language";
 
 export type RegenerateResult =
   | { ok: true; pdfGeneratedAt: string }
@@ -64,7 +65,7 @@ export async function regenerateInvoicePdf(
     const pdfData = buildInvoicePdfData(
       invoice,
       settings,
-      user.userLanguage ?? "en"
+      fromPrismaLanguage(user.userLanguage)
     );
 
     const pdfBuffer = await renderInvoicePdf(pdfData);

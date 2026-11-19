@@ -3,7 +3,7 @@ import { prismadb } from "@/lib/prisma";
 import InviteUserEmail from "@/emails/InviteUser";
 import resendHelper from "@/lib/resend";
 import { revalidatePath } from "next/cache";
-import { Language } from "@prisma/client";
+import { fromPrismaLanguage, toPrismaLanguage } from "@/lib/language";
 import {
   requireRole,
   AuthenticationError,
@@ -35,6 +35,11 @@ export const inviteUser = async (data: {
     return { error: "Name, Email, and Language is required!" };
   }
 
+  const prismaLanguage = toPrismaLanguage(language);
+  if (!prismaLanguage) {
+    return { error: "Unsupported language!" };
+  }
+
   let resend;
   try {
     resend = await resendHelper();
@@ -56,7 +61,7 @@ export const inviteUser = async (data: {
         name,
         email,
         userStatus: "ACTIVE",
-        userLanguage: language as Language,
+        userLanguage: prismaLanguage,
         role: "user",
       },
       select: {
@@ -82,7 +87,7 @@ export const inviteUser = async (data: {
       react: InviteUserEmail({
         invitedByUsername: inviter?.name || "admin",
         username: user.name!,
-        userLanguage: language,
+        userLanguage: fromPrismaLanguage(prismaLanguage),
       }),
     });
 
