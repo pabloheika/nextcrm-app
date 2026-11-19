@@ -1,34 +1,35 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { Key, Users, Settings, SlidersHorizontal, ClipboardList, Coins, FileText, CalendarClock, Puzzle, Tags, ShoppingCart } from "lucide-react";
 
 const navItems = [
-  { label: "LLM Keys",     href: "/admin/llm-keys",     icon: Key },
-  { label: "Users",        href: "/admin/users",        icon: Users },
-  { label: "Services",     href: "/admin/services",     icon: Settings },
-  { label: "CRM Settings", href: "/admin/crm-settings", icon: SlidersHorizontal },
-  { label: "Funnel Settings", href: "/admin/funnel-settings", icon: SlidersHorizontal },
-  { label: "Calendar Settings", href: "/admin/calendar-settings", icon: CalendarClock },
-  { label: "Audit Log",    href: "/admin/audit-log",    icon: ClipboardList },
-  { label: "Currencies",   href: "/admin/currencies",   icon: Coins },
-  { label: "Pricing",      href: "/admin/pricing",      icon: Tags },
-  { label: "Orders",       href: "/admin/orders",       icon: ShoppingCart },
-  { label: "Invoices",     href: "/admin/invoices",     icon: FileText },
-  { label: "Plugins",      href: "/admin/plugins",      icon: Puzzle },
-];
+  { key: "llmKeys",          href: "/admin/llm-keys",          icon: Key },
+  { key: "users",            href: "/admin/users",             icon: Users },
+  { key: "services",         href: "/admin/services",          icon: Settings },
+  { key: "crmSettings",      href: "/admin/crm-settings",      icon: SlidersHorizontal },
+  { key: "funnelSettings",   href: "/admin/funnel-settings",   icon: SlidersHorizontal },
+  { key: "calendarSettings", href: "/admin/calendar-settings", icon: CalendarClock },
+  { key: "auditLog",         href: "/admin/audit-log",         icon: ClipboardList },
+  { key: "currencies",       href: "/admin/currencies",        icon: Coins },
+  { key: "pricing",          href: "/admin/pricing",           icon: Tags },
+  { key: "orders",           href: "/admin/orders",            icon: ShoppingCart },
+  { key: "invoices",         href: "/admin/invoices",          icon: FileText },
+  { key: "plugins",          href: "/admin/plugins",           icon: Puzzle },
+] as const;
 
 export function AdminSidebarNav() {
   const pathname = usePathname();
+  const t = useTranslations("AdminPage.nav");
 
   return (
     <nav className="flex flex-col gap-1">
       <p className="px-3 py-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-        Admin
+        {t("title")}
       </p>
-      {navItems.map(({ label, href, icon: Icon }) => {
+      {navItems.map(({ key, href, icon: Icon }) => {
         const isActive = pathname.includes(href);
         return (
           <Link
@@ -42,7 +43,7 @@ export function AdminSidebarNav() {
             )}
           >
             <Icon className="h-4 w-4 shrink-0" />
-            {label}
+            {t(key)}
           </Link>
         );
       })}

@@ -12,7 +12,7 @@ export default async function ServicesPage() {
   // write itself is authorized in the setResendKey server action.
   if (session?.user?.role !== "admin") {
     return (
-      <Container title="Services" description="System service integrations">
+      <Container title={t("services.title")} description={t("services.accessDescription")}>
         <div className="flex w-full h-full items-center justify-center">
           {t("accessNotAllowed")}
         </div>
@@ -22,8 +22,8 @@ export default async function ServicesPage() {
 
   return (
     <Container
-      title="Services"
-      description="System service integrations. Priority: ENV → System-wide (DB)."
+      title={t("services.title")}
+      description={t("services.description")}
     >
       <div className="space-y-6 max-w-2xl">
         <ResendCard />

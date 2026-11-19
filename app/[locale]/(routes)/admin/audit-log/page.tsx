@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getAuditLogAdmin } from "@/actions/crm/audit-log/get-audit-log-admin";
 import { AdminFilters } from "@/components/crm/audit-log/AdminFilters";
 import { AdminAuditLogClient } from "@/components/crm/audit-log/AdminPageClient";
+import { getTranslations } from "next-intl/server";
 
 const AuditLogPage = async (props: {
   searchParams?: Promise<{
@@ -26,15 +27,16 @@ const AuditLogPage = async (props: {
     dateTo: sp?.dateTo ? new Date(sp.dateTo) : undefined,
   };
 
+  const t = await getTranslations("AdminPage.auditLog");
   const result = await getAuditLogAdmin(filters);
-  if ("error" in result) return <div>Access denied</div>;
+  if ("error" in result) return <div>{t("accessDenied")}</div>;
 
   return (
     <div className="p-6 space-y-6">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight">Audit Log</h1>
+        <h1 className="text-2xl font-bold tracking-tight">{t("title")}</h1>
         <p className="text-muted-foreground text-sm mt-1">
-          Complete history of all CRM changes.
+          {t("description")}
         </p>
       </div>
       <AdminFilters

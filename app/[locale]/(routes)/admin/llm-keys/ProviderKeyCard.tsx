@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 const PROVIDER_META: Record<
   ApiKeyProvider,
@@ -29,6 +30,7 @@ export function ProviderKeyCard({ status }: ProviderKeyCardProps) {
   const [editing, setEditing] = useState(false);
   const [keyValue, setKeyValue] = useState("");
   const [isPending, startTransition] = useTransition();
+  const t = useTranslations("AdminPage.llmKeys");
 
   const meta = PROVIDER_META[status.provider];
 
@@ -39,9 +41,9 @@ export function ProviderKeyCard({ status }: ProviderKeyCardProps) {
         await upsertSystemApiKey(status.provider, keyValue.trim());
         setKeyValue("");
         setEditing(false);
-        toast.success(`${meta.name} key saved`);
+        toast.success(t("saved", { name: meta.name }));
       } catch {
-        toast.error("Failed to save key");
+        toast.error(t("saveError"));
       }
     });
   }
@@ -50,9 +52,9 @@ export function ProviderKeyCard({ status }: ProviderKeyCardProps) {
     startTransition(async () => {
       try {
         await deleteSystemApiKey(status.provider);
-        toast.success(`${meta.name} key removed`);
+        toast.success(t("removed", { name: meta.name }));
       } catch {
-        toast.error("Failed to remove key");
+        toast.error(t("removeError"));
       }
     });
   }
@@ -77,17 +79,17 @@ export function ProviderKeyCard({ status }: ProviderKeyCardProps) {
           <div className="shrink-0">
             {isEnv && (
               <Badge variant="outline" className="border-amber-500 text-amber-600 bg-amber-500/10">
-                ENV active
+                {t("envActive")}
               </Badge>
             )}
             {isSet && (
               <Badge variant="outline" className="border-green-500 text-green-600 bg-green-500/10">
-                System-wide
+                {t("systemWide")}
               </Badge>
             )}
             {isNotConfigured && (
               <Badge variant="outline" className="text-muted-foreground">
-                Not configured
+                {t("notConfigured")}
               </Badge>
             )}
           </div>
@@ -103,7 +105,7 @@ export function ProviderKeyCard({ status }: ProviderKeyCardProps) {
         {/* ENV read-only note */}
         {isEnv && (
           <p className="text-xs text-muted-foreground">
-            Set via <code className="bg-muted px-1 rounded">{meta.envVar}</code> — read-only
+            {t("setViaEnv", { envVar: meta.envVar })}
           </p>
         )}
 
@@ -116,7 +118,7 @@ export function ProviderKeyCard({ status }: ProviderKeyCardProps) {
               onClick={() => setEditing(true)}
               disabled={isPending}
             >
-              Edit
+              {t("edit")}
             </Button>
             <Button
               variant="ghost"
@@ -125,7 +127,7 @@ export function ProviderKeyCard({ status }: ProviderKeyCardProps) {
               onClick={handleRemove}
               disabled={isPending}
             >
-              Remove
+              {t("remove")}
             </Button>
           </div>
         )}
@@ -139,7 +141,7 @@ export function ProviderKeyCard({ status }: ProviderKeyCardProps) {
             onClick={() => setEditing(true)}
             disabled={isPending}
           >
-            + Add key
+            {t("addKey")}
           </Button>
         )}
 
@@ -148,7 +150,7 @@ export function ProviderKeyCard({ status }: ProviderKeyCardProps) {
           <div className="flex gap-2">
             <Input
               type="password"
-              placeholder="Paste API key…"
+              placeholder={t("pastePlaceholder")}
               value={keyValue}
               onChange={(e) => setKeyValue(e.target.value)}
               className="flex-1 font-mono text-sm"
@@ -162,7 +164,7 @@ export function ProviderKeyCard({ status }: ProviderKeyCardProps) {
               }}
             />
             <Button size="sm" onClick={handleSave} disabled={isPending || !keyValue.trim()}>
-              Save
+              {t("save")}
             </Button>
             <Button
               variant="ghost"
@@ -173,7 +175,7 @@ export function ProviderKeyCard({ status }: ProviderKeyCardProps) {
               }}
               disabled={isPending}
             >
-              Cancel
+              {t("cancel")}
             </Button>
           </div>
         )}

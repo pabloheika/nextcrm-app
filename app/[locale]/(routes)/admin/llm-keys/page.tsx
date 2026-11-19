@@ -11,7 +11,7 @@ export default async function LlmKeysPage() {
 
   if (session?.user?.role !== "admin") {
     return (
-      <Container title="AI Provider Keys" description="LLM API key management">
+      <Container title={t("llmKeys.title")} description={t("llmKeys.accessDescription")}>
         <div className="flex w-full h-full items-center justify-center">
           {t("accessNotAllowed")}
         </div>
@@ -23,17 +23,14 @@ export default async function LlmKeysPage() {
 
   return (
     <Container
-      title="AI Provider Keys"
-      description="Priority: ENV → System-wide → User profile"
+      title={t("llmKeys.title")}
+      description={t("llmKeys.description")}
     >
       <div className="space-y-6 max-w-2xl">
         {/* Info banner */}
         <div className="flex gap-3 rounded-md border bg-muted/50 px-4 py-3 text-sm text-muted-foreground">
           <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
-          <p>
-            System-wide keys are used when no ENV variable is set. Users can configure
-            their own keys in profile settings.
-          </p>
+          <p>{t("llmKeys.banner")}</p>
         </div>
 
         {/* Provider cards */}

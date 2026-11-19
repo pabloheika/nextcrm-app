@@ -381,6 +381,105 @@
       "message": "Mensagem",
       "sendButton": "Enviar",
       "sent": "E-mail enviado com sucesso"
+    },
+    "nav": {
+      "title": "Admin",
+      "llmKeys": "Chaves de LLM",
+      "users": "Usuários",
+      "services": "Serviços",
+      "crmSettings": "Configurações de CRM",
+      "funnelSettings": "Configurações de Funil",
+      "calendarSettings": "Configurações de Calendário",
+      "auditLog": "Log de Auditoria",
+      "currencies": "Moedas",
+      "pricing": "Preços",
+      "orders": "Pedidos",
+      "invoices": "Faturas",
+      "plugins": "Plugins"
+    },
+    "llmKeys": {
+      "title": "Chaves de Provedores de IA",
+      "description": "Prioridade: ENV → Sistema → Perfil do usuário",
+      "accessDescription": "Gerenciamento de chaves de API de LLM",
+      "banner": "Chaves do sistema são usadas quando nenhuma variável ENV está definida. Os usuários podem configurar suas próprias chaves nas configurações do perfil.",
+      "envActive": "ENV ativa",
+      "systemWide": "Sistema",
+      "notConfigured": "Não configurada",
+      "setViaEnv": "Definida via {envVar} — somente leitura",
+      "edit": "Editar",
+      "remove": "Remover",
+      "addKey": "+ Adicionar chave",
+      "pastePlaceholder": "Cole a chave de API…",
+      "save": "Salvar",
+      "cancel": "Cancelar",
+      "saved": "Chave de {name} salva",
+      "saveError": "Falha ao salvar chave",
+      "removed": "Chave de {name} removida",
+      "removeError": "Falha ao remover chave"
+    },
+    "services": {
+      "title": "Serviços",
+      "accessDescription": "Integrações de serviços do sistema",
+      "description": "Integrações de serviços do sistema. Prioridade: ENV → Sistema (BD).",
+      "resendTitle": "Resend.com - Chave de API",
+      "envKey": "Chave de API ENV:",
+      "dbKey": "Chave de API do BD:",
+      "notEnabled": "não ativada",
+      "placeholder": "Sua chave de API",
+      "reset": "Limpar",
+      "setResendKey": "Definir chave Resend"
+    },
+    "crmSettings": {
+      "title": "Configurações de CRM",
+      "description": "Gerencie os valores padrão usados nos módulos do CRM.",
+      "industries": "Setores",
+      "contactTypes": "Tipos de Contato",
+      "leadSources": "Origens de Leads",
+      "leadStatuses": "Status de Leads",
+      "leadTypes": "Tipos de Leads",
+      "opportunityTypes": "Tipos de Oportunidade",
+      "salesStages": "Etapas de Venda"
+    },
+    "funnelSettings": {
+      "title": "Temporização do funil — configurações da instância",
+      "description": "As alterações se aplicam às próximas entradas de etapa e execuções do temporizador; cadências já agendadas mantêm os prazos com que começaram.",
+      "saved": "Configurações de funil salvas",
+      "saveError": "Falha ao salvar configurações de funil",
+      "saving": "Salvando…",
+      "save": "Salvar configurações",
+      "groups": {
+        "kill": "Regra de encerramento",
+        "recycle": "Reciclagem",
+        "cadence": "Cadência de acompanhamento",
+        "care": "Atendimento e renovações"
+      },
+      "fields": {
+        "killAfterDays": "Encerrar negócio após N dias sem resposta do cliente",
+        "recycleAfterDays": "Reciclar alvos N dias após o fim da sequência",
+        "cadenceTouch1BusinessDays": "Contato 1: dias úteis após a cotação",
+        "cadenceTouch2OffsetDays": "Contato 2: dias após o contato 1",
+        "cadenceTouch3OffsetDays": "Contato 3: dias após o contato 2",
+        "cadenceTouch4OffsetDays": "Contato 4: dias após o contato 3",
+        "cadenceTouch5OffsetDays": "Contato 5 (final): dias após o contato 3",
+        "careCheckinDays": "Check-in de atendimento após N dias",
+        "careReferralDays": "Pedido de indicação após N dias",
+        "careQuarterIntervalDays": "Intervalo trimestral (dias)",
+        "careQuarterCount": "Número de check-ins trimestrais",
+        "renewalWindowDays": "Exibir renovações com N dias de antecedência"
+      }
+    },
+    "calendarSettings": {
+      "title": "Configurações de calendário",
+      "description": "Webhook da organização Calendly para captura de chamadas agendadas."
+    },
+    "auditLog": {
+      "title": "Log de Auditoria",
+      "description": "Histórico completo de todas as alterações do CRM.",
+      "accessDenied": "Acesso negado"
+    },
+    "currencies": {
+      "title": "Moedas",
+      "exchangeRates": "Taxas de Câmbio"
     }
   },
   "ProjectsPage": {

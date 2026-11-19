@@ -3,8 +3,10 @@ import { getCurrencies, getExchangeRatesAdmin, getEcbAutoUpdate } from "./_actio
 import { CurrencyTable } from "./_components/CurrencyTable";
 import { ExchangeRatesTable } from "./_components/ExchangeRatesTable";
 import { ECBToggle } from "./_components/ECBToggle";
+import { getTranslations } from "next-intl/server";
 
 export default async function CurrenciesPage() {
+  const t = await getTranslations("AdminPage.currencies");
   const [currencies, rates, ecbEnabled] = await Promise.all([
     getCurrencies(),
     getExchangeRatesAdmin(),
@@ -15,7 +17,7 @@ export default async function CurrenciesPage() {
     <div className="space-y-6">
       <Card>
         <CardHeader>
-          <CardTitle>Currencies</CardTitle>
+          <CardTitle>{t("title")}</CardTitle>
         </CardHeader>
         <CardContent>
           <CurrencyTable currencies={currencies} />
@@ -24,7 +26,7 @@ export default async function CurrenciesPage() {
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Exchange Rates</CardTitle>
+          <CardTitle>{t("exchangeRates")}</CardTitle>
           <ECBToggle initialEnabled={ecbEnabled} />
         </CardHeader>
         <CardContent>
