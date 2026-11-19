@@ -1,0 +1,107 @@
+{
+  "name": "Conector OXO ERP",
+  "admin": {
+    "test": "Testar conexão",
+    "syncNow": "Sincronizar agora",
+    "loadLists": "Carregar listas de preços",
+    "queued": "Na fila: inicia em até 5 minutos.",
+    "listsLoaded": "{count} listas de preços carregadas do OXO ERP.",
+    "running": "Uma sincronização já está em andamento.",
+    "connected": "Conectado ao OXO ERP ({lists} listas de preços ativas).",
+    "dryRun": "O modo de simulação está ativo: a sincronização apenas relata o que mudaria. Leia o relatório abaixo e desative o modo de simulação nas configurações.",
+    "lastRun": "Última execução",
+    "never": "ainda não",
+    "nextRun": "Próxima execução",
+    "failed": "Falha: {error}",
+    "customerCounts": "Clientes: {linked} já vinculados, {number} correspondidos por IČO, {vat} por DIČ, {name} por nome e CEP, {created} novos, {updated} atualizados, {conflicts} conflitos, {skipped} inativos, {failed} com falha",
+    "catalogCounts": "Catálogo: categorias {categoriesMatched} correspondidas, {categoriesCreated} novas · produtos {productsUpdated} atualizados, {productsCreated} novos, {productsFailed} com falha · listas de preços substituídas {listsReplaced} · listas de preços de empresas definidas {accountLists}",
+    "orderCounts": "Pedidos: {checked} verificados, {moved} movidos, {imported} importados, {updated} atualizados, {pending} aguardando o cliente",
+    "listsMissing": "Listas de preços não encontradas no OXO ERP: {ids}",
+    "report": "Relatório de simulação ({date})",
+    "nameLinks": "Vinculados por nome e CEP (verifique estes)",
+    "createdRows": "Seriam criados",
+    "conflicts": "Clientes correspondentes a mais de uma empresa",
+    "conflictsEmpty": "Nenhum conflito.",
+    "conflictsHelp": "Corrija os dados no CRM (mescle a empresa duplicada ou corrija o IČO); a próxima sincronização vinculará o cliente.",
+    "reason": {
+      "number": "mesmo IČO",
+      "vat": "mesmo DIČ",
+      "name": "mesmo nome e CEP",
+      "linked": "já vinculado a outro cliente OXO ERP"
+    },
+    "catalog": "Catálogo",
+    "priceListsHelp": "Escolha as listas de preços na configuração priceLists: IDs de listas do OXO ERP separados por vírgula, ex.: 3, 7. As listas das quais elas dependem também são importadas.",
+    "listsLoadedAt": "Listas de preços do OXO ERP (carregadas em {date})",
+    "listsNotLoaded": "Clique em Carregar listas de preços para ver as listas do OXO ERP.",
+    "skippedRules": "Regras que o CRM não pode usar",
+    "syncQueued": "Sincronização na fila.",
+    "orders": "Pedidos",
+    "ordersOff": "O envio de pedidos está desativado. Ative sendOrders nas configurações para enviar pedidos PRONTOS para o OXO ERP.",
+    "ordersCounts": "Aguardando envio {waiting} · enviados nos últimos 7 dias {sent} · com falha {failed}",
+    "ordersPaused": "O envio está pausado desde {date}: {reason}. Quando o OXO ERP voltar a aceitar pedidos, clique em Testar conexão.",
+    "pending": "{count} pedidos do OXO ERP aguardam a vinculação do cliente"
+  },
+  "needsOwner": {
+    "title": "Empresas do OXO ERP sem responsável",
+    "nav": "Sem responsável",
+    "help": "Abra a empresa e defina seu responsável; ela sairá desta lista.",
+    "empty": "Toda empresa vinculada possui um responsável."
+  },
+  "panel": {
+    "linked": "Cliente OXO ERP #{id}",
+    "synced": "Última sincronização em {date}",
+    "fields": "O OXO ERP controla: nome, IČO, DIČ, endereço de cobrança, e-mail, telefone.",
+    "inactive": "Inativo no OXO ERP.",
+    "priceList": "Lista de preços do OXO ERP: {name}",
+    "priceListMissing": "A lista de preços do OXO ERP #{id} não foi importada",
+    "addresses": "Endereços de entrega"
+  },
+  "product": {
+    "linked": "Produto OXO ERP #{id}"
+  },
+  "order": {
+    "linked": "Pedido OXO ERP {number}",
+    "state": "Status no OXO ERP: {state}",
+    "delivery": {
+      "none": "não enviado",
+      "partial": "enviado parcialmente",
+      "full": "enviado"
+    },
+    "deliveries": "Entregas",
+    "belowList": "Abaixo do preço de tabela no OXO ERP: {lines}",
+    "waiting": "Aguardando o OXO ERP desde {date}",
+    "lastError": "Último erro: {error}",
+    "failed": "Não enviado: {reason}",
+    "missing": "Não encontrado no OXO ERP",
+    "imported": "Importado do OXO ERP"
+  },
+  "orders": {
+    "noAccount": "A empresa do pedido não possui nome",
+    "notOxoProduct": "O produto {product} não vem do OXO ERP",
+    "linesMissing": "{count} itens não exibidos: produtos não estão no CRM"
+  },
+  "mail": {
+    "failingSubject": "A sincronização do OXO ERP está falhando",
+    "failingText": "A sincronização do OXO ERP falhou três vezes seguidas. Último erro: {error}",
+    "pausedSubject": "O OXO ERP não está aceitando pedidos",
+    "pausedText": "O envio de pedidos para o OXO ERP está pausado: {error}. Quando o OXO ERP voltar a aceitar pedidos, clique em Testar conexão.",
+    "orderFailedSubject": "O pedido {number} não foi enviado ao OXO ERP",
+    "orderFailedText": "O pedido {number} não pôde ser enviado ao OXO ERP: {error}. Corrija a causa e clique em Tentar novamente no pedido.",
+    "stuckSubject": "O pedido {number} está aguardando o OXO ERP há um dia",
+    "stuckText": "O pedido {number} está aguardando envio ao OXO ERP desde {since}. Último erro: {error}. O conector continua tentando; verifique no OXO ERP.",
+    "missingSubject": "Pedido {number}: não encontrado no OXO ERP",
+    "missingText": "O conector não encontra mais o pedido CRM {number} no OXO ERP. O pedido do CRM mantém seu status; cancele-o manualmente se o pedido foi removido."
+  },
+  "tab": {
+    "title": "OXO ERP",
+    "notLinked": "Não vinculado a um cliente OXO ERP",
+    "orders": "Pedidos",
+    "ordersEmpty": "Nenhum pedido ainda",
+    "number": "Número",
+    "oxo": "OXO ERP",
+    "date": "Data",
+    "total": "Total",
+    "status": "Status",
+    "delivery": "Entrega"
+  }
+}

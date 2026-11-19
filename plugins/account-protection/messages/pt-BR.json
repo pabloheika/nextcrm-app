@@ -1,0 +1,63 @@
+{
+  "name": "Proteção de empresa",
+  "rules": {
+    "protected": "Esta empresa está protegida até {until}.",
+    "alreadyInCrm": "Esta empresa já está no CRM. Foi solicitado a um gerente que a atribua a você.",
+    "exists": "Esta empresa já está no CRM.",
+    "ownAccount": "Você já possui esta empresa no CRM.",
+    "numberRequired": "Informe o número de registro da empresa.",
+    "ownerManagersOnly": "Apenas um gerente pode alterar o responsável pela empresa."
+  },
+  "tab": {
+    "title": "Proteção",
+    "status": "Status",
+    "protected": "Protegida até {date}",
+    "contactNeeded": "Contato necessário até {date}",
+    "free": "Não protegida: sem responsável",
+    "noNumber": "Não protegida: sem número de registro",
+    "contact": "Contato qualificado",
+    "contactYes": "Sim, em {date}",
+    "contactNo": "Ainda não",
+    "order": "Pedidos",
+    "lastOrder": "Último pedido confirmado em {date}",
+    "noOrder": "Nenhum pedido confirmado ainda",
+    "history": "Histórico de responsáveis",
+    "historyEmpty": "Nenhuma alteração de responsável registrada ainda.",
+    "nobody": "ninguém",
+    "system": "sistema",
+    "reason": {
+      "created": "criada",
+      "assigned": "atribuída",
+      "released": "liberada",
+      "expired": "proteção expirada",
+      "expired-no-contact": "sem contato no prazo",
+      "install": "plugin instalado"
+    }
+  },
+  "expiring": {
+    "title": "Proteção expirando",
+    "nav": "Proteção expirando",
+    "due": "Vence em {days} dias",
+    "freed": "Liberadas nos últimos 7 dias",
+    "empty": "Nada por aqui."
+  },
+  "admin": {
+    "conflicts": "Empresas compartilhando um número de registro",
+    "conflictsEmpty": "Nenhum conflito.",
+    "key": "Número",
+    "account": "Empresa",
+    "other": "Mantida por"
+  },
+  "mail": {
+    "expiredSubject": "{count} empresas perderam sua proteção",
+    "expiredText": "Estas empresas não têm mais um responsável:",
+    "blocked-protected": {
+      "subject": "Bloqueada: {account} está protegida",
+      "text": "{user} tentou criar {account}, que está protegida por outro responsável."
+    },
+    "blocked-free": {
+      "subject": "Atribuir {account}",
+      "text": "{user} tentou criar {account}. Ela já está no CRM sem responsável. Atribua-a na empresa se apropriado."
+    }
+  }
+}

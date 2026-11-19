@@ -120,16 +120,16 @@ export function SetLanguage({ userId }: Props) {
                         ? languages.find(
                             (language) => language.value === field.value
                           )?.label
-                        : "Select language"}
+                        : t("selectPlaceholder")}
                       <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
                 <PopoverContent className="w-[200px] p-0">
                   <Command>
-                    <CommandInput placeholder="Search language ..." />
+                    <CommandInput placeholder={t("searchPlaceholder")} />
                     <CommandList>
-                      <CommandEmpty>No language found.</CommandEmpty>
+                      <CommandEmpty>{t("noResult")}</CommandEmpty>
                       <CommandGroup>
                         {languages.map((language) => (
                           <CommandItem
