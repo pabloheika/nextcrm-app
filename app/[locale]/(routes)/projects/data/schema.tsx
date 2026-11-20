@@ -5,11 +5,14 @@ import { z } from "zod";
 export const taskSchema = z.object({
   id: z.string(),
   title: z.string(),
-  description: z.string(),
-  visibility: z.string(),
-  assigned_user: z.object({
-    name: z.string(),
-  }),
+  description: z.string().nullable().optional(),
+  visibility: z.string().nullable().optional(),
+  assigned_user: z
+    .object({
+      name: z.string().nullable().optional(),
+    })
+    .nullable()
+    .optional(),
 });
 
 export type Task = z.infer<typeof taskSchema>;

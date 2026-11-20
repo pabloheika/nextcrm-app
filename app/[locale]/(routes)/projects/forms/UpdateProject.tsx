@@ -53,7 +53,12 @@ const UpdateProjectForm = ({ initialData, openEdit }: Props) => {
 
   const form = useForm<NewAccountFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData,
+    defaultValues: {
+      id: initialData?.id ?? "",
+      title: initialData?.title ?? "",
+      description: initialData?.description ?? "",
+      visibility: initialData?.visibility ?? "",
+    },
   });
 
   useEffect(() => {

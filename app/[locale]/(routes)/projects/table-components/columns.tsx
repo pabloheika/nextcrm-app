@@ -33,7 +33,7 @@ export const columns: ColumnDef<Task>[] = [
 
     cell: ({ row }) => (
       <div className="w-[150px]">
-        {row.original.assigned_user.name ?? "Unassigned"}
+        {row.original.assigned_user?.name ?? "Unassigned"}
       </div>
     ),
     enableSorting: true,
