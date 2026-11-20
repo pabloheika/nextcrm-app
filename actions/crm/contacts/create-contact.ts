@@ -111,7 +111,11 @@ export const createContact = async (data: {
       changes: null,
       userId: user.id,
     });
-    void inngest.send({ name: "crm/contact.saved", data: { record_id: contact.id } });
+    void Promise.resolve(
+      inngest.send({ name: "crm/contact.saved", data: { record_id: contact.id } })
+    ).catch((err) => {
+      console.error("[crm/contact.saved] emit failed:", err instanceof Error ? err.message : String(err));
+    });
     revalidatePath("/[locale]/crm/contacts", "page");
     return { data: contact };
   } catch (error) {

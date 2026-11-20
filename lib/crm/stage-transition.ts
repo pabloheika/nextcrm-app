@@ -16,9 +16,13 @@ export async function handleStageTransition(opts: {
     where: { id: opportunityId },
     data: { stage_entered_at: new Date() },
   });
-  await inngest.send({
-    name: "crm/opportunity.stage-changed",
-    data: { record_id: opportunityId, to_stage: toStage },
-  });
+  try {
+    await inngest.send({
+      name: "crm/opportunity.stage-changed",
+      data: { record_id: opportunityId, to_stage: toStage },
+    });
+  } catch (err) {
+    console.error("[crm/opportunity.stage-changed] emit failed:", err instanceof Error ? err.message : String(err));
+  }
   return true;
 }

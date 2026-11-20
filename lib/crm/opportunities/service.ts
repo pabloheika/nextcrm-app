@@ -87,7 +87,11 @@ async function notifyAssignee(opportunity: { id: string; name: string | null }, 
 }
 
 function emitSaved(opportunityId: string) {
-  void inngest.send({ name: "crm/opportunity.saved", data: { record_id: opportunityId } });
+  void Promise.resolve(
+    inngest.send({ name: "crm/opportunity.saved", data: { record_id: opportunityId } })
+  ).catch((err) => {
+    console.error("[crm/opportunity.saved] emit failed:", err instanceof Error ? err.message : String(err));
+  });
 }
 
 // Decimal and BigInt columns, as the audit diff stores them.

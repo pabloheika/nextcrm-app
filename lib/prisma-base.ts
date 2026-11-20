@@ -9,7 +9,12 @@ declare global {
 // Prisma Client configuration with connection pooling and lifecycle management
 const prismaClientSingleton = () => {
   const connectionString = `${process.env.DATABASE_URL}`;
-  const pool = new Pool({ connectionString });
+  const pool = new Pool({
+    connectionString,
+    max: process.env.VERCEL ? 3 : 10,
+    idleTimeoutMillis: 10_000,
+    connectionTimeoutMillis: 10_000,
+  });
   const adapter = new PrismaPg(pool);
 
   const client = new PrismaClient({

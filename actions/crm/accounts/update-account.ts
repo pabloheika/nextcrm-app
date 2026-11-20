@@ -99,7 +99,11 @@ export const updateAccount = async (data: {
       changes,
       userId: user.id,
     });
-    void inngest.send({ name: "crm/account.saved", data: { record_id: account.id } });
+    void Promise.resolve(
+      inngest.send({ name: "crm/account.saved", data: { record_id: account.id } })
+    ).catch((err) => {
+      console.error("[crm/account.saved] emit failed:", err instanceof Error ? err.message : String(err));
+    });
     revalidatePath("/[locale]/(routes)/crm/accounts", "page");
     return { data: account };
   } catch (error) {

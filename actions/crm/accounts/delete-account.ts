@@ -41,7 +41,11 @@ export const deleteAccount = async (accountId: string) => {
       userId: user.id,
     });
     revalidatePath("/[locale]/(routes)/crm/accounts", "page");
-    void inngest.send({ name: "crm/account.deleted", data: { record_id: accountId } });
+    void Promise.resolve(
+      inngest.send({ name: "crm/account.deleted", data: { record_id: accountId } })
+    ).catch((err) => {
+      console.error("[crm/account.deleted] emit failed:", err instanceof Error ? err.message : String(err));
+    });
     return { success: true };
   } catch (error) {
     const ruleMessage = await pluginRuleErrorMessage(error);

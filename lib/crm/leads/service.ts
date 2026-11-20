@@ -47,7 +47,11 @@ async function notifyAssignee(lead: { id: string; firstName: string | null; last
 }
 
 function emitSaved(leadId: string) {
-  void inngest.send({ name: "crm/lead.saved", data: { record_id: leadId } });
+  void Promise.resolve(
+    inngest.send({ name: "crm/lead.saved", data: { record_id: leadId } })
+  ).catch((err) => {
+    console.error("[crm/lead.saved] emit failed:", err instanceof Error ? err.message : String(err));
+  });
 }
 
 /** Unassigned input goes to the caller; a partner always assigns to himself and must link one of his accounts. */
